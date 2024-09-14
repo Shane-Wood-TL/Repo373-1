@@ -32,6 +32,5 @@
 *.app
 
 # STM32CubeIDE
-.Lab3ProjectA/metadata/
-.Lab3ProjectA/settings/
-.Lab3ProjectA/Release/
+Lab3ProjectA/.settings/
+Lab3ProjectA/Release/
