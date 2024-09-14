@@ -30,3 +30,8 @@
 *.exe
 *.out
 *.app
+
+# STM32CubeIDE
+.Lab3Project/metadata/
+.Lab3Project/settings/
+.Lab3Project/Release/
