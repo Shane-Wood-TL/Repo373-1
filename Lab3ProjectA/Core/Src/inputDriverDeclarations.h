@@ -2,7 +2,7 @@
  * inputDriverDeclarations.h
  *
  *  Created on: Sep 10, 2024
- *      Author: townl
+ *      Author: ShaneWood
  */
 
 #ifndef SRC_INPUTDRIVERDECLARATIONS_H_
@@ -12,37 +12,29 @@
 #include "queueDeclarations.h"
 #include "basicGPIOClass.h"
 
-class StateMachine
-{
-	private:
-    bool pState;  // Previous state
-    bool cState;  // Current state
+class StateMachine {
+private:
+	//member variables
+	bool pState;  // Previous state
+
 public:
-    //intialization of state
-	StateMachine() : pState(false), cState(false) {this->pState=false; this->cState=false;}
-    bool detectFEdge(bool state);
+	//member functions
+	StateMachine(); //no parameters for constructor
+	bool detectFEdge(bool state);
 };
 
-class InputDriver
-{
+class InputDriver {
 private:
-    queue* queueInstance;        // Pointer to the queue
-    int32_t *valToEnq;          // Numerical value to enqueue
-    GPIO_Input* input;          //GPIO input
-    bool data;                   //
-    StateMachine stateMachine; // State machine instance
+	//member variables
+	queue *queueInstance;        // Pointer to the queue
+	int32_t *valToEnq;          // Numerical value to enqueue
+	GPIO_Input *input;          //GPIO input
+	StateMachine stateMachine; // State machine instance
 
 public:
-
-	InputDriver(queue *queue1, int32_t *valToEnq1, GPIO_Input *input1)
-	    :queueInstance(queue1), valToEnq(valToEnq1), input(input1){
-		this->queueInstance = queue1;
-		this->valToEnq = valToEnq1;
-		this->input = input1;
-	    data = false;
-	}
-    //check for falling edges and enqueue value
-    void checkAndEnqueue();
+	//member functions
+	InputDriver(queue *queue1, int32_t *valToEnq1, GPIO_Input *input1);
+	void checkAndEnqueue(); //check for falling edges and enqueue value
 };
 
 #endif /* SRC_INPUTDRIVERDECLARATIONS_H_ */

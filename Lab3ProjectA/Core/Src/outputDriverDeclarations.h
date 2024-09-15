@@ -14,54 +14,42 @@
 #include "basicGPIOClass.h"
 
 //Counter Class
-class Counter
-{
-	private:
-        uint8_t count;
-        int32_t value;
-        queue *queueInstance;
+class Counter {
+private:
+	uint8_t count; //current value of counter
+	queue *queueInstance;
 
-    public:
-        Counter(queue *queueInstance)
-        {
-        	this->queueInstance = queueInstance;
-            count = 0;
-        }
-
-        void update();
-        int get_count();
+public:
+	Counter(queue *mainQueueI);
+	void update(); //get value from queue, change count
+	uint8_t get_count(); //return where the counter is at now
 };
-
 
 //Output Driver Class
-class OutputDriver
-{
+class OutputDriver {
 
-	private:
-    	GPIO_Output *A;
-    	GPIO_Output *B;
-    	GPIO_Output *C;
-    	GPIO_Output *D;
-    	GPIO_Output *E;
-    	GPIO_Output *F;
-    	GPIO_Output *G;
+private:
+	Counter counter; //counter that exists only within this driver instance
 
-    	Counter counter;
+	//pointers to the segments
+	GPIO_Output *A;
+	GPIO_Output *B;
+	GPIO_Output *C;
+	GPIO_Output *D;
+	GPIO_Output *E;
+	GPIO_Output *F;
+	GPIO_Output *G;
 
-    public:
-	OutputDriver(queue *mainQueue, GPIO_Output *A,GPIO_Output *B,GPIO_Output *C,GPIO_Output *D,GPIO_Output *E,GPIO_Output *F,GPIO_Output *G)
-	        :counter(mainQueue){
-	            this->A = A;
-	            this->B = B;
-	            this->C = C;
-	            this->D = D;
-	            this->E = E;
-	            this->F = F;
-	            this->G = G;
-	        }
-
-        void display();
+public:
+	OutputDriver(queue *mainQueueI, GPIO_Output *AI, GPIO_Output *BI,
+			GPIO_Output *CI, GPIO_Output *DI, GPIO_Output *EI, GPIO_Output *FI,
+			GPIO_Output *GI);
+	void display(); //update the 7 segment display
 
 };
 
+void test_Counter();
+
+void test_Display(GPIO_Output *A, GPIO_Output *B, GPIO_Output *C,
+		GPIO_Output *D, GPIO_Output *E, GPIO_Output *F, GPIO_Output *G, uint8_t value);
 #endif /* SRC_OUTPUTDRIVERDECLARATIONS_H_ */
