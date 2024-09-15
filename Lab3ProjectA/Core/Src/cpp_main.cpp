@@ -47,7 +47,6 @@ void cpp_main(void) {
 	GPIO_Output segmentF(GPIOB, GPIO_PIN_5);
 	GPIO_Output segmentG(GPIOB, GPIO_PIN_4);
 
-	GPIO_Output ledr(GPIOB, GPIO_PIN_3);
 	//OutputDriver(queue *mainQueue, GPIO_Output *A, GPIO_Output *B,
 	//GPIO_Output *C, GPIO_Output *D, GPIO_Output *E, GPIO_Output *F, GPIO_Output *G)
 	//pass all segments to the output driver
@@ -57,13 +56,19 @@ void cpp_main(void) {
 	//simple memory barrier to catch memory issues (indexing past where another objects were allocated to)
 	uint32_t memoryBarrier[32] = {1,11,111,1111,1,11,111,1111, 1,11,111,1111,1,11,111,1111, 1,11,111,1111,1,11,111,1111, 1,11,111,1111,1,11,111,1111};
 	memoryChecker mainMemoryChecker(memoryBarrier);
+
+
+
+
+
 	while (1) {
-		ledr.writePin(true);
 		upButtonDriver.checkAndEnqueue(); //check for up input, falling edge, handle enqueueing
 		downButtonDriver.checkAndEnqueue(); //check for down input, falling edge, handle enqueueing
 		outputDriverInstance.display(); //check / update the display, handle dequeueing
 
 		mainMemoryChecker.checkMemory(); //checks memory barrier for a broken pattern
+
+
 	}
 }
 

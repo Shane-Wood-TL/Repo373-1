@@ -19,11 +19,11 @@
 //to test input this needs to go abouve the while(1) loop
 #ifdef testingInput
 	GPIO_Input testPinIn(GPIOA,GPIO_PIN_3,pullup);
-	GPIO_Output testPinOut(GPIOA,GPIO_PIN_1);
-	testPinOut.writePin(true); //write pin high = no input
-	int32_t testInt = 0;
-	StateMachine testStateMachine;
-	InputDriver testButtonDriver(&mainQueue, &testInt, &testPinIn); //up button driver (with internal state machine
+		GPIO_Output testPinOut(GPIOA,GPIO_PIN_1);
+		testPinOut.writePin(true); //write pin high = no input
+		int32_t testInt = 0;
+		StateMachine testStateMachine;
+		InputDriver testButtonDriver(&mainQueue, &testInt, &testPinIn); //up button driver (with internal state machine
 #endif
 
 
@@ -42,17 +42,15 @@
 #endif
 
 #ifdef testingInput
-		code to test input + falling edge
+		//code to test input + falling edge
 		bool testPin = false;
-		testPinOut.writePin(true);
 		testPinIn.readPin(testPin);
 
 
 		if (testStateMachine.detectFEdge(testPin)){
-			segmentG.writePin(true);
-			HAL_Delay(100); //make the detection visible / use a scope to see it
+			testPinOut.writePin(true);
 		}else{
-			segmentG.writePin(false);
+			testPinOut.writePin(false);
 		}
 #endif
 
