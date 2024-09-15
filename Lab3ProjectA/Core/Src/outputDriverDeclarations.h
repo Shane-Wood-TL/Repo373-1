@@ -48,8 +48,7 @@ public:
 
 };
 
-void test_Counter();
-
-void test_Display(GPIO_Output *A, GPIO_Output *B, GPIO_Output *C,
-		GPIO_Output *D, GPIO_Output *E, GPIO_Output *F, GPIO_Output *G, uint8_t value);
+void test_Display(GPIO_Output *A, GPIO_Output *B,
+		GPIO_Output *C, GPIO_Output *D, GPIO_Output *E, GPIO_Output *F,
+		GPIO_Output *G);
 #endif /* SRC_OUTPUTDRIVERDECLARATIONS_H_ */

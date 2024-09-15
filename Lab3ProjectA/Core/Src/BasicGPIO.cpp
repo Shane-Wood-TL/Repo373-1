@@ -20,15 +20,18 @@ void GPIO_Input::readPin(bool &value) { //read the input, change the value store
 	return;
 }
 
-GPIO_Output::GPIO_Output(GPIO_TypeDef *portI, uint8_t pinI) :
-		port(portI), pin(pinI) {
+GPIO_Output::GPIO_Output(GPIO_TypeDef *portI, uint16_t pinCastI) :
+		port(portI), pinCast(pinCastI) {
 }  //set the member variables up given the parameters
 
 void GPIO_Output::writePin(bool setHigh) {
 	if (setHigh == true) {  //if set high
-		port->ODR |= (1 << pin); //write a 1 to the pin using bit banging
+		HAL_GPIO_WritePin(port,pinCast,GPIO_PIN_SET); //set pin high
+		//bit banging was not working predictably when debugging, switched to using HAL
+		//port->ODR |= (1 << pin); //write a 1 to the pin using bit banging
 	} else {
-		port->ODR &= (0 << pin); //write a 0 to the pin(low) using bit banging
+		HAL_GPIO_WritePin(port,pinCast,GPIO_PIN_RESET); //set pin low
+		//port->ODR &= (0 << pin); //write a 0 to the pin(low) using bit banging
 	}
 	return;
 }

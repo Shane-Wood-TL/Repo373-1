@@ -139,123 +139,16 @@ void OutputDriver::display() {
 		break;
 	default:
 		//something has went very wrong if it gets here
-		//NVIC_SystemReset(); //reset the uC
+		NVIC_SystemReset(); //reset the uC
 		break;
 	}
 	return;
 }
 
-void test_Counter(){
 
 
-}
 
-void test_Display(GPIO_Output *A, GPIO_Output *B, GPIO_Output *C,
-		GPIO_Output *D, GPIO_Output *E, GPIO_Output *F, GPIO_Output *G,uint8_t value) {
-	if(value == 0){ //write 0 to the the display
-		A->writePin(true);
-		B->writePin(true);
-		C->writePin(true);
-		D->writePin(true);
-		E->writePin(true);
-		F->writePin(true);
-		G->writePin(false);
 
-	}
-	else if(value == 1){ //write 1 to the the display
-		A->writePin(false);
-		B->writePin(true);
-		C->writePin(true);
-		D->writePin(false);
-		E->writePin(false);
-		F->writePin(false);
-		G->writePin(false);
-	}
-//	case 2: //write 2 to the the display
-//		A->writePin(true);
-//		B->writePin(true);
-//		C->writePin(false);
-//		D->writePin(true);
-//		E->writePin(true);
-//		F->writePin(false);
-//		G->writePin(true);
-//		break;
-//
-//	case 3: //write 3 to the the display
-//		A->writePin(true);
-//		B->writePin(true);
-//		C->writePin(true);
-//		D->writePin(true);
-//		E->writePin(false);
-//		F->writePin(false);
-//		G->writePin(true);
-//		break;
-//
-//	case 4: //write 4 to the the display
-//		A->writePin(false);
-//		B->writePin(true);
-//		C->writePin(true);
-//		D->writePin(false);
-//		E->writePin(false);
-//		F->writePin(true);
-//		G->writePin(true);
-//		break;
-//
-//	case 5: //write 5 to the the display
-//		A->writePin(true);
-//		B->writePin(false);
-//		C->writePin(true);
-//		D->writePin(true);
-//		E->writePin(false);
-//		F->writePin(true);
-//		G->writePin(true);
-//		break;
-//
-//	case 6: //write 6 to the the display
-//		A->writePin(true);
-//		B->writePin(false);
-//		C->writePin(true);
-//		D->writePin(true);
-//		E->writePin(true);
-//		F->writePin(true);
-//		G->writePin(true);
-//		break;
-//
-//	case 7: //write 7 to the the display
-//		A->writePin(true);
-//		B->writePin(true);
-//		C->writePin(true);
-//		D->writePin(false);
-//		E->writePin(false);
-//		F->writePin(false);
-//		G->writePin(false);
-//		break;
-//
-//	case 8: //write 8 to the the display
-//		A->writePin(true);
-//		B->writePin(true);
-//		C->writePin(true);
-//		D->writePin(true);
-//		E->writePin(true);
-//		F->writePin(true);
-//		G->writePin(true);
-//		break;
-//
-//	case 9: //write 9 to the the display
-//		A->writePin(true);
-//		B->writePin(true);
-//		C->writePin(true);
-//		D->writePin(false);
-//		E->writePin(false);
-//		F->writePin(true);
-//		G->writePin(true);
-//		break;
-//	default:
-//		//something has went very wrong if it gets here
-//		//NVIC_SystemReset(); //reset the uC
-//		break;
-//	}
-}
 
 //Original zeke's code
 

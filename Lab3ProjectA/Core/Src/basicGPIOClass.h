@@ -22,9 +22,9 @@ public:
 class GPIO_Output {
 private:
 	GPIO_TypeDef *port; //port to use
-	uint8_t pin; //pin to use
+	uint16_t pinCast;  //pin to use
 public:
-	GPIO_Output(GPIO_TypeDef *portI, uint8_t pinI);
+	GPIO_Output(GPIO_TypeDef *portI, uint16_t pinCastI);
 	void writePin(bool setHigh);
 };
 
