@@ -47,8 +47,10 @@ public:
 	void display(); //update the 7 segment display
 
 };
-
+#ifdef testingOutput
 void test_Display(GPIO_Output *A, GPIO_Output *B,
 		GPIO_Output *C, GPIO_Output *D, GPIO_Output *E, GPIO_Output *F,
 		GPIO_Output *G);
+#endif
+
 #endif /* SRC_OUTPUTDRIVERDECLARATIONS_H_ */

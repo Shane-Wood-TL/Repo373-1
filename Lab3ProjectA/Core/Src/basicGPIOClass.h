@@ -8,23 +8,25 @@
 #ifndef SRC_BASICGPIOCLASS_H_
 #define SRC_BASICGPIOCLASS_H_
 #include "main.h"
+#include "stm32l4xx_ll_gpio.h"
+#include "stm32l4xx_ll_bus.h"
 
 class GPIO_Input {
 private:
 	GPIO_TypeDef *port; //port to use
-	uint16_t pinCast; //pint to use GPIO_PIN_n
+	uint32_t pinCast; //pint to use GPIO_PIN_n
 	bool pullup;
 public:
-	GPIO_Input(GPIO_TypeDef *portI, uint16_t pinCastI, bool pullupI);
+	GPIO_Input(GPIO_TypeDef *portI, uint32_t pinCastI, bool pullupI);
 	void readPin(bool &value);
 };
 
 class GPIO_Output {
 private:
 	GPIO_TypeDef *port; //port to use
-	uint16_t pinCast;  //pin to use
+	uint32_t pinCast;  //pin to use
 public:
-	GPIO_Output(GPIO_TypeDef *portI, uint16_t pinCastI);
+	GPIO_Output(GPIO_TypeDef *portI, uint32_t pinCastI);
 	void writePin(bool setHigh);
 };
 

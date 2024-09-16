@@ -9,6 +9,8 @@
 
 #include "memoryBarrier.h"
 
+#include "stm32l4xx_ll_gpio.h"
+#include "stm32l4xx_ll_bus.h"
 
 //make this main linkable to the c main
 extern "C" void cpp_main(void);
@@ -22,8 +24,8 @@ extern "C" void cpp_main(void);
 void cpp_main(void) {
 	//GPIO_Input(GPIO_TypeDef *port, uint64_t pinCast, bool pullup);
 //
-	GPIO_Input upButton(GPIOA, GPIO_PIN_6, pullup); //the button used to increase the counter
-	GPIO_Input downButton(GPIOA, GPIO_PIN_4, pullup); //the button used to decrease the counter
+	GPIO_Input upButton(GPIOA, LL_GPIO_PIN_6, pullup); //the button used to increase the counter
+	GPIO_Input downButton(GPIOA, LL_GPIO_PIN_4, pullup); //the button used to decrease the counter
 
 
 //
@@ -39,13 +41,13 @@ void cpp_main(void) {
 //
 //	// all output pins for seven segment displays
 //	//GPIO_Output(GPIO_TypeDef *port, uint8_t pin);
-	GPIO_Output segmentA(GPIOB, GPIO_PIN_7);
-	GPIO_Output segmentB(GPIOB, GPIO_PIN_6);
-	GPIO_Output segmentC(GPIOB, GPIO_PIN_1);
-	GPIO_Output segmentD(GPIOA, GPIO_PIN_8);
-	GPIO_Output segmentE(GPIOA, GPIO_PIN_11);
-	GPIO_Output segmentF(GPIOB, GPIO_PIN_5);
-	GPIO_Output segmentG(GPIOB, GPIO_PIN_4);
+	GPIO_Output segmentA(GPIOB, LL_GPIO_PIN_7);
+	GPIO_Output segmentB(GPIOB, LL_GPIO_PIN_6);
+	GPIO_Output segmentC(GPIOB, LL_GPIO_PIN_1);
+	GPIO_Output segmentD(GPIOA, LL_GPIO_PIN_8);
+	GPIO_Output segmentE(GPIOA, LL_GPIO_PIN_11);
+	GPIO_Output segmentF(GPIOB, LL_GPIO_PIN_5);
+	GPIO_Output segmentG(GPIOB, LL_GPIO_PIN_4);
 
 	//OutputDriver(queue *mainQueue, GPIO_Output *A, GPIO_Output *B,
 	//GPIO_Output *C, GPIO_Output *D, GPIO_Output *E, GPIO_Output *F, GPIO_Output *G)
@@ -59,15 +61,12 @@ void cpp_main(void) {
 
 
 
-
-
 	while (1) {
 		upButtonDriver.checkAndEnqueue(); //check for up input, falling edge, handle enqueueing
 		downButtonDriver.checkAndEnqueue(); //check for down input, falling edge, handle enqueueing
 		outputDriverInstance.display(); //check / update the display, handle dequeueing
 
 		mainMemoryChecker.checkMemory(); //checks memory barrier for a broken pattern
-
 
 	}
 }
