@@ -22,7 +22,7 @@ extern "C" void cpp_main(void);
 
 
 void cpp_main(void) {
-	//GPIO_Input(GPIO_TypeDef *port, uint64_t pinCast, bool pullup);
+	//GPIO_Input(GPIO_TypeDef *port, uint32_t pinCast, bool pullup);
 //
 	GPIO_Input upButton(GPIOA, LL_GPIO_PIN_6, pullup); //the button used to increase the counter
 	GPIO_Input downButton(GPIOA, LL_GPIO_PIN_4, pullup); //the button used to decrease the counter
@@ -40,7 +40,7 @@ void cpp_main(void) {
 	InputDriver downButtonDriver(&mainQueue, &decreaseAmount, &downButton); //down button driver (with internal state machine
 //
 //	// all output pins for seven segment displays
-//	//GPIO_Output(GPIO_TypeDef *port, uint8_t pin);
+//	//GPIO_Output(GPIO_TypeDef *port, uint32_t pinCast);
 	GPIO_Output segmentA(GPIOB, LL_GPIO_PIN_7);
 	GPIO_Output segmentB(GPIOB, LL_GPIO_PIN_6);
 	GPIO_Output segmentC(GPIOB, LL_GPIO_PIN_1);
